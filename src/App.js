@@ -4,14 +4,14 @@ import useLocalStorageState from "use-local-storage-state";
 import "./App.css";
 import { useWeather } from "./utils/fetch";
 import { uid } from "uid";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 function App() {
   //Const
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
-  const [weather, setWeather] = useState();
+  const { weather, fetchWeather } = useWeather();
 
   //Add activity
   function handleAddActivity(newActivity) {
@@ -26,24 +26,6 @@ function App() {
   }
 
   useEffect(() => {
-    async function fetchWeather() {
-      try {
-        const response = await fetch(
-          "https://example-apis.vercel.app/api/weather"
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setWeather(data);
-        } else {
-          console.error("Something is going wrong");
-        }
-      } catch (error) {
-        console.error("Error", error);
-      }
-    }
-
-    fetchWeather();
-
     const interval = setInterval(fetchWeather, 5000);
     return () => {
       clearInterval(interval);
