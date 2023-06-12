@@ -16,7 +16,7 @@ export function List({ activities, isGoodWeather, onDeleteActivity}) {
             <button  className="list__item-button"
               type="button"
               aria-label="delete activity"
-              onClick={onDeleteActivity} style={{ fontSize: "1rem" }}
+              onClick={() => onDeleteActivity(activity)} style={{ fontSize: "1rem" }}
             >
             ✕ </button>
           </li>

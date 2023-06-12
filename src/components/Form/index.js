@@ -2,12 +2,12 @@
 export function Form({ onAddActivity }) {
   function handeleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.terget);
-    const data = Object.fromEntries(formData);
-    /* const data = {
+   /*  const formData = new FormData(event.terget);
+    const data = Object.fromEntries(formData); */
+    const data = {
       name: event.target.elements.name.value,
-      isForGoodWeather: event.target.elements.goodWeather.value,
-    }; */
+      isForGoodWeather: event.target.elements.isForGoodWeather.value,
+    };
     onAddActivity(data);
     event.target.reset();
     event.target.name.focus();
