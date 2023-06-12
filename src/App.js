@@ -25,7 +25,7 @@ function App() {
     );
   }
   useEffect(() => {
-    const interval = setInterval(fetchWeather(), 5000);
+    const interval = setInterval(fetchWeather, 5000);
     return () => {
       clearInterval(interval);
     };
@@ -36,7 +36,7 @@ function App() {
       <div className="weatherApp">
         <h1>{weather?.condition}</h1>
         <h2>
-          `Temperature in ${weather?.location}: ${weather?.temperature} °C`
+          Temperature in {weather?.location}: {weather?.temperature} °C
         </h2>
         <List
           activities={activities}
