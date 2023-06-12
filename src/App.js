@@ -24,13 +24,14 @@ function App() {
       activities.map((activity) => (activity.id === id ? false : true))
     );
   }
+  console.log(activities);
   useEffect(() => {
     const interval = setInterval(fetchWeather, 5000);
     return () => {
       clearInterval(interval);
     };
-  }, [fetchWeather]);
-activities.filter((activity)=>(activity.isForGoodWeather === weather.isGoodWeather));
+  }, []);
+const activitiesfilt = activities.filter((activity) => activity.isForGoodWeather === weather?.isGoodWeather);
   return (
     <>
       <div className="weatherApp">
@@ -39,7 +40,7 @@ activities.filter((activity)=>(activity.isForGoodWeather === weather.isGoodWeath
           Temperature in {weather?.location}: {weather?.temperature} °C
         </h2> */}
         <List
-          activities={activities}
+          activities={activitiesfilt}
           isGoodWeather={weather?.isGoodWeather}
           onDeleteActivity={handleDeleteActivity}
         />

@@ -1,6 +1,7 @@
 import "../../App.css";
 
 export function List({ activities, isGoodWeather, onDeleteActivity}) {
+ 
   return (
     <>
       {isGoodWeather ? (
