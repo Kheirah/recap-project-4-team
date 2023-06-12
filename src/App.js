@@ -11,7 +11,7 @@ function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
-  const weather = true; //useWeather();
+  const {weather, fetchWeather }= useWeather();
 
   //Add activity
   function handleAddActivity(newActivity) {
@@ -25,7 +25,7 @@ function App() {
     );
   }
   useEffect(() => {
-    const interval = setInterval(() => weather, 5000);
+    const interval = setInterval(fetchWeather(), 5000);
     return () => {
       clearInterval(interval);
     };

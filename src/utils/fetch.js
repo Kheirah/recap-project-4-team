@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-export async function useWeather() {
+export function useWeather() {
   const [weather, setWeather] = useState({});
   const weatherUrl = "https://example-apis.vercel.app/api/weather";
+  async function fetchWeather()
   try {
     const response = await fetch(weatherUrl);
     if (response.ok) {
@@ -14,5 +15,9 @@ export async function useWeather() {
   } catch (error) {
     console.error("Error");
   }
-  return weather;
+
+  fetchWeather()
+  return {weather, fetchWeather};
 }
+
+
