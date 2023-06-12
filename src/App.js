@@ -11,7 +11,7 @@ function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
   });
-  const {weather, fetchWeather }= useWeather();
+  const { weather, fetchWeather } = useWeather();
 
   //Add activity
   function handleAddActivity(newActivity) {
@@ -29,21 +29,21 @@ function App() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
-
+  }, [fetchWeather]);
+activities.filter((activity)=>(activity.isForGoodWeather === weather.isGoodWeather));
   return (
     <>
       <div className="weatherApp">
-        <h1>{weather?.condition}</h1>
-        <h2>
+        <h1 style={{ fontSize: "7rem" }}>{weather?.condition} {weather?.temperature} °C</h1>
+       {/* <h2>
           Temperature in {weather?.location}: {weather?.temperature} °C
-        </h2>
+        </h2> */}
         <List
           activities={activities}
           isGoodWeather={weather?.isGoodWeather}
           onDeleteActivity={handleDeleteActivity}
         />
-        <Form onAddActivity={handleAddActivity} />
+        <Form onAddActivity={handleAddActivity} onDeleteActivity={handleDeleteActivity}/>
       </div>
     </>
   );

@@ -1,5 +1,6 @@
+import "../../App.css";
 
-export function List({ activities, isGoodWeather }) {
+export function List({ activities, isGoodWeather, onDeleteActivity}) {
   return (
     <>
       {isGoodWeather ? (
@@ -12,7 +13,12 @@ export function List({ activities, isGoodWeather }) {
         {activities.map((activity) => (
           <li className="list_item" key={activity.id}>
             {activity.name}
-            <button></button>
+            <button  className="list__item-button"
+              type="button"
+              aria-label="delete activity"
+              onClick={onDeleteActivity} style={{ fontSize: "1rem" }}
+            >
+            ✕ </button>
           </li>
         ))}
       </ul>
